@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Updater>
+<UpdaterGeneral>
+<CurrentVersion>1.0.2</CurrentVersion>
+</UpdaterGeneral>
+<UpdaterAdvanced>
+<UpdateTime>9:15 PM</UpdateTime>
+<UpdateDate>12/10/2016</UpdateDate>
+<UpdateDescription>
+-Made connection with bets page
+-Made possible logging in with credentials from settings
+-Made connection with history page
+</UpdateDescription>
+</UpdaterAdvanced>
+</Updater>
