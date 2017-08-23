@@ -21,7 +21,7 @@ public class NotificationModel implements Runnable{
 	private WebClient conn;
 	private WebPageManipulation wpm;
 	private static String njoftimeUrl;
-	private static String text = ""
+	private static String text = "" 
 			+ "[B][SIZE=4][COLOR=#0000CD]"
 				+ "OFROJME KURSE PROFESIONALE PROGRAMIMI :"
 			+ "[/COLOR][/SIZE][/B]<br/><br/>"

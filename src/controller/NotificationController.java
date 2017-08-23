@@ -32,7 +32,7 @@ public class NotificationController {
 	private static String USERNAME = "Qendra e studimit 'Future'";
 	private static String PASSWORD = "Klklkl007";
 	private static String[] NOTIFICATION_PAGES;
-	private ExecutorService executor = Executors.newFixedThreadPool(5);
+	private ExecutorService executor = Executors.newFixedThreadPool(5); 
 	
 	
 	private WebConnection conn = null;

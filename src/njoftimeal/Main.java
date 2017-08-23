@@ -20,7 +20,7 @@ public class Main {
 						nc.setArguments(args);
 						nc.run();
 					} catch (Exception e) {
-						e.printStackTrace();
+						e.printStackTrace(); 
 					}
 				}
 			});
