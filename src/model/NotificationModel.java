@@ -1,26 +1,51 @@
-package model;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.net.MalformedURLException;
+/*
+ * MIT License
 
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
+Copyright (c) 2017 Klevin Delimeta
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+package model;
+
+import java.io.IOException;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextArea;
+import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
-import model.web.WebConnection;
+import Utils.Util;
 import model.web.WebPageManipulation;
 
 public class NotificationModel implements Runnable{
 
-	private String PostNumber; 
 	private WebClient conn;
 	private WebPageManipulation wpm;
-	private static String njoftimeUrl; 
+	private HtmlPage page;
+	
+	private String PostNumber; 
+	private static String USERNAME = "Qendra e studimit 'Future'";
+	private static String PASSWORD = "Klklkl007";
+	private static String njoftimeUrl= "http://www.njoftime.com/editpost.php?p=!&do=editpost";; 
 	private static String text = "" 
 			+ "[B][SIZE=4][COLOR=#0000CD]"
 				+ "OFROJME KURSE PROFESIONALE PROGRAMIMI :"
@@ -49,57 +74,50 @@ public class NotificationModel implements Runnable{
 				+ "future@delimeta.info"
 			+ "[/EMAIL]<br/>";
 	
-	public NotificationModel(WebClient wc,String postNr){
-		conn = wc;
+	public NotificationModel(String postNr){
+		conn = new WebClient();
+		conn.getOptions().setJavaScriptEnabled(false);
+		conn.getOptions().setCssEnabled(false);
 		PostNumber = postNr;
-		njoftimeUrl= "http://www.njoftime.com/editpost.php?p=!&do=editpost";
 	}
 	
 	@Override
 	public void run() {
 		String url =  njoftimeUrl.replaceAll("!", ""+PostNumber);
-		System.out.println(url);
 
-		try {
-			HtmlPage pg = conn.getPage(url);
-			wpm = new WebPageManipulation(pg);
-			writeToFile("C:\\Users\\Silver\\Desktop\\indexNjoftime.html",pg.asXml(),false);
+		try {			
+			this.login();
+
+			page = conn.getPage(url);
+			wpm = new WebPageManipulation(page);
+			
 			HtmlTextArea txt = (HtmlTextArea) wpm.getElementById("vB_Editor_001_editor");
-			//txt.setText("-");
-			txt.setText(text);
 			HtmlSubmitInput refresh = (HtmlSubmitInput) wpm.getElementById("vB_Editor_001_save");
+			System.out.println(txt.getText() + "-------");
+			txt.setText(text);
+			System.out.println(txt.getText() + "-------");
 			refresh.click();
-			//System.out.println(refresh.asXml());
 		} catch (Exception e) {
 			e.printStackTrace();
-			writeToFile("C:\\Users\\Silver\\Desktop\\indexNjoftime.html",e.getMessage()+" \n\r ",true);
+			Util.writeToFile("C:\\Users\\Silver\\Desktop\\indexNjoftime.html",e.getMessage()+" \n\r ",true);
 		}
 	}
 	
-	
-	private void writeToFile(String path, String context, boolean append){
-		BufferedWriter out = null;
-		try  
-		{
-		    FileWriter fstream = new FileWriter(path, append); //true tells to append data.
-		    out = new BufferedWriter(fstream);
-		    out.write(context);
-		}
-		catch (IOException e)
-		{
-		    System.err.println("Error: " + e.getMessage());
-		}
-		finally
-		{
-		    if(out != null) {
-		        try {
-					out.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		    }
-		}
-	}
+	private void login() throws IOException{
+		page = conn.getPage("http://www.njoftime.com/");
+		wpm = new WebPageManipulation(page);
 
+		HtmlTextInput username = (HtmlTextInput) wpm.getElementById("navbar_username");
+		HtmlPasswordInput password = (HtmlPasswordInput) wpm.getElementById("navbar_password");
+		HtmlSubmitInput  submit = (HtmlSubmitInput)wpm.getByXPath("//input[@class='loginbutton']").get(0);
+		
+		username.setValueAttribute(USERNAME);
+		password.setValueAttribute(PASSWORD);
+		HtmlPage loginPage = submit.click();
+
+		loginPage.getWebClient().waitForBackgroundJavaScript(30000);
+		loginPage.getWebClient().waitForBackgroundJavaScriptStartingBefore(30000);
+		
+		wpm.setPage(loginPage);
+	}
 }
