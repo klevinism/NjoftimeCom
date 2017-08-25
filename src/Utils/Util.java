@@ -33,7 +33,7 @@ public class Util {
 		BufferedWriter out = null;
 		try  
 		{
-		    FileWriter fstream = new FileWriter(path, append); //true tells to append data.
+		    FileWriter fstream = new FileWriter(path, append);
 		    out = new BufferedWriter(fstream);
 		    out.write(context);
 		}

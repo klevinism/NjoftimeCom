@@ -30,7 +30,6 @@ import controller.NotificationController;
 import controller.VersionController;
 import model.updater.Updater;
 
-
 public class Main {
 
 	public static void main(String[] args) {

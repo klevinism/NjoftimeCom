@@ -78,6 +78,7 @@ public class NotificationModel implements Runnable{
 		conn = new WebClient();
 		conn.getOptions().setJavaScriptEnabled(false);
 		conn.getOptions().setCssEnabled(false);
+		
 		PostNumber = postNr;
 	}
 	
@@ -93,9 +94,7 @@ public class NotificationModel implements Runnable{
 			
 			HtmlTextArea txt = (HtmlTextArea) wpm.getElementById("vB_Editor_001_editor");
 			HtmlSubmitInput refresh = (HtmlSubmitInput) wpm.getElementById("vB_Editor_001_save");
-			System.out.println(txt.getText() + "-------");
 			txt.setText(text);
-			System.out.println(txt.getText() + "-------");
 			refresh.click();
 		} catch (Exception e) {
 			e.printStackTrace();

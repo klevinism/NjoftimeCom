@@ -44,6 +44,6 @@ public class NotificationController {
         }  
         executor.shutdown();  
                 
-        while (!executor.isTerminated()) { }
+        while (!executor.isTerminated()){ }
 	}
 }
