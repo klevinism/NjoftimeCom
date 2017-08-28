@@ -28,7 +28,12 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Util {
+public class Util {	
+	
+	public static String userPath() {
+		return System.getProperty("user.home");
+	}
+	
 	public static void writeToFile(String path, String context, boolean append){
 		BufferedWriter out = null;
 		try  

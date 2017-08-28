@@ -33,6 +33,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextArea;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
+import java.util.Date;
 import Utils.Util;
 import model.web.WebPageManipulation;
 
@@ -41,6 +42,8 @@ public class NotificationModel implements Runnable{
 	private WebClient conn;
 	private WebPageManipulation wpm;
 	private HtmlPage page;
+	private Date date = new Date();
+
 	
 	private String PostNumber; 
 	private static String USERNAME = "Qendra e studimit 'Future'";
@@ -85,8 +88,13 @@ public class NotificationModel implements Runnable{
 	@Override
 	public void run() {
 		String url =  njoftimeUrl.replaceAll("!", ""+PostNumber);
+		try {
+			Util.writeToFile(
+				Util.userPath()+"\\Desktop\\indexNjoftime.txt",
+				"\n ----------- \n"+"Refreshed " + PostNumber + " on date: " +date+" \n ",
+				true
+			);
 
-		try {			
 			this.login();
 
 			page = conn.getPage(url);
@@ -99,6 +107,8 @@ public class NotificationModel implements Runnable{
 		} catch (Exception e) {
 			e.printStackTrace();
 			Util.writeToFile("C:\\Users\\Silver\\Desktop\\indexNjoftime.html",e.getMessage()+" \n\r ",true);
+		}finally {
+			System.exit(0);
 		}
 	}
 	
