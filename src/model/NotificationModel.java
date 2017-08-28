@@ -74,7 +74,7 @@ public class NotificationModel implements Runnable{
 			+ "[/U]"
 			+ "cel: 0696433538<br/>"
 			+ "email: [EMAIL=&quot;future@delimeta.info&quot;]"
-				+ "future@delimeta.info"
+				+ "qendrafuture@hotmail.com"
 			+ "[/EMAIL]<br/>";
 	
 	public NotificationModel(String postNr){
