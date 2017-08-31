@@ -51,7 +51,9 @@ public class NotificationModel implements Runnable{
 	private static String PASSWORD = "Klklkl007";
 	private static String njoftimeUrl= "http://www.njoftime.com/editpost.php?p=!&do=editpost";
 	private static String NOTIFICATION_TITLE = "Title";
-	private static String NOTIFICATION_BODY = "" 
+	private static String NOTIFICATION_BODY;
+	
+	/*= "" 
 			+ "[B][SIZE=4][COLOR=#0000CD]"
 				+ "OFROJME KURSE PROFESIONALE PROGRAMIMI :"
 			+ "[/COLOR][/SIZE][/B]<br/><br/>"
@@ -77,7 +79,7 @@ public class NotificationModel implements Runnable{
 			+ "cel: 0696433538<br/>"
 			+ "email: [EMAIL=&quot;future@delimeta.info&quot;]"
 				+ "qendrafuture@hotmail.com"
-			+ "[/EMAIL]<br/>";
+			+ "[/EMAIL]<br/>";*/
 	
 	public NotificationModel(String postNr) throws Exception{
 		conn = new WebClient();
@@ -104,9 +106,7 @@ public class NotificationModel implements Runnable{
 			wpm = new WebPageManipulation(page);
 			
 			HtmlTextArea txt = (HtmlTextArea) wpm.getElementById("vB_Editor_001_editor");
-			
-			System.out.println(txt.asXml());
-			HtmlSubmitInput refresh = (HtmlSubmitInput) wpm.getElementById("vB_Editor_001_save");
+						HtmlSubmitInput refresh = (HtmlSubmitInput) wpm.getElementById("vB_Editor_001_save");
 			txt.setText(NOTIFICATION_BODY);
 			refresh.click();
 		} catch (Exception e) {
@@ -142,6 +142,5 @@ public class NotificationModel implements Runnable{
 		PASSWORD = dataController.getPassword();
 		NOTIFICATION_BODY = dataController.getNotificationBody();
 		NOTIFICATION_TITLE = dataController.getNotificationTitle();
-		System.out.println(dataController.toString());
 	}
 }
