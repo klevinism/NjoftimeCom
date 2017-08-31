@@ -105,9 +105,12 @@ public class NotificationModel implements Runnable{
 			page = conn.getPage(url);
 			wpm = new WebPageManipulation(page);
 			
-			HtmlTextArea txt = (HtmlTextArea) wpm.getElementById("vB_Editor_001_editor");
-						HtmlSubmitInput refresh = (HtmlSubmitInput) wpm.getElementById("vB_Editor_001_save");
-			txt.setText(NOTIFICATION_BODY);
+			HtmlTextInput title = (HtmlTextInput) wpm.getElementById("titlefield");
+			HtmlTextArea body = (HtmlTextArea) wpm.getElementById("vB_Editor_001_editor");
+			HtmlSubmitInput refresh = (HtmlSubmitInput) wpm.getElementById("vB_Editor_001_save");
+			body.setText(NOTIFICATION_BODY);
+			title.setValueAttribute(NOTIFICATION_TITLE);
+			System.out.println(title.asXml());
 			refresh.click();
 		} catch (Exception e) {
 			e.printStackTrace();
