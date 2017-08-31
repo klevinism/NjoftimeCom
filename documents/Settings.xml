@@ -1,1 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?><Settings><Advanced/><General><AdminUsername>(username)</AdminUsername><AdminUrl>(Ex: http://example.com)/wp-admin)</AdminUrl><AdCode>This.is.where.your.google.Ad.code.goes....Copy.and.paste.it.here.from.your.adsense.account...</AdCode><AdminPassword>password</AdminPassword></General></Settings>
+<?xml version="1.0" encoding="UTF-8"?>
+<Settings>
+	<Advanced/>
+	<General>
+		<AdminUsername>Qendra e studimit 'Future'</AdminUsername>
+		<AdminPassword>Klklkl007</AdminPassword>
+		<NotificationBody>[B][SIZE=4][COLOR=#0000CD] 
+    OFROJME KURSE PROFESIONALE PROGRAMIMI : 
+    [/COLOR][/SIZE][/B]<![CDATA[<br />]]><![CDATA[<br />]]> 
+    Programim C, Programim C  , Programim Java, Visual Basic,  
+    Oracle DB, Programim Php, Linux, Rrjetat kompjuterike, Siguria ne rrjet, Telefoni, Windows 7, Algoritmike,  
+    Programim PLC, Sisteme multimediale, Arkitekture Kompjuteri,SPSS ... etj.<![CDATA[<br />]]><![CDATA[<br />]]> 
+    Web Design: (HTML 5- CSS-JavaScript -JQyery), Joomla, Web Programming(DB. SQL Server- ASP.net)/(PHP-MY SQL), Google Map Aplication,MVC Visual Studio, 
+    Mobile Application,JQyery Mobile Application, Programim C, C  ,C#, Visual Studio, Java,MatLab, Oracle DB,?.etj<![CDATA[<br />]]><![CDATA[<br />]]> 
+    [U][COLOR=#0000CD][B] 
+    OFERTAT 
+    [/B][/COLOR][/U]<![CDATA[<br />]]><![CDATA[<br />]]> 
+    [B] 
+    (Individual)<![CDATA[<br />]]> 
+    [/B] 
+    Cmimi per 1-3 persona: 2000L seanca<![CDATA[<br />]]><![CDATA[<br />]]> 
+    [B] 
+    (Grup)<![CDATA[<br />]]> 
+    [/B] 
+    Cmimi per me shume se 3 persona: 1500L seanca<![CDATA[<br />]]><![CDATA[<br />]]> 
+    [U] 
+    PER ME SHUME INFO:<![CDATA[<br />]]> 
+    [/U] 
+    cel: 0696433538<![CDATA[<br />]]> 
+    email: [EMAIL=&quot;future@delimeta.info&quot;] 
+    qendrafuture@hotmail.com 
+    [/EMAIL]<![CDATA[<br />]]> 
+		</NotificationBody>
+		<NotificationTitle>
+			This.is.where.you.write.the.title.of.your.notification...
+		</NotificationTitle>
+	</General>
+</Settings>

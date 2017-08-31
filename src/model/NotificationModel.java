@@ -35,6 +35,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
 import java.util.Date;
 import Utils.Util;
+import controller.NotificationDataController;
 import model.web.WebPageManipulation;
 
 public class NotificationModel implements Runnable{
@@ -43,13 +44,14 @@ public class NotificationModel implements Runnable{
 	private WebPageManipulation wpm;
 	private HtmlPage page;
 	private Date date = new Date();
+	private NotificationDataModel dataController;
 
-	
-	private String PostNumber; 
+	private String PostNumber;
 	private static String USERNAME = "Qendra e studimit 'Future'";
 	private static String PASSWORD = "Klklkl007";
-	private static String njoftimeUrl= "http://www.njoftime.com/editpost.php?p=!&do=editpost";; 
-	private static String text = "" 
+	private static String njoftimeUrl= "http://www.njoftime.com/editpost.php?p=!&do=editpost";
+	private static String NOTIFICATION_TITLE = "Title";
+	private static String NOTIFICATION_BODY = "" 
 			+ "[B][SIZE=4][COLOR=#0000CD]"
 				+ "OFROJME KURSE PROFESIONALE PROGRAMIMI :"
 			+ "[/COLOR][/SIZE][/B]<br/><br/>"
@@ -77,12 +79,13 @@ public class NotificationModel implements Runnable{
 				+ "qendrafuture@hotmail.com"
 			+ "[/EMAIL]<br/>";
 	
-	public NotificationModel(String postNr){
+	public NotificationModel(String postNr) throws Exception{
 		conn = new WebClient();
 		conn.getOptions().setJavaScriptEnabled(false);
 		conn.getOptions().setCssEnabled(false);
-		
 		PostNumber = postNr;
+		
+		this.getXMLData();
 	}
 	
 	@Override
@@ -101,8 +104,10 @@ public class NotificationModel implements Runnable{
 			wpm = new WebPageManipulation(page);
 			
 			HtmlTextArea txt = (HtmlTextArea) wpm.getElementById("vB_Editor_001_editor");
+			
+			System.out.println(txt.asXml());
 			HtmlSubmitInput refresh = (HtmlSubmitInput) wpm.getElementById("vB_Editor_001_save");
-			txt.setText(text);
+			txt.setText(NOTIFICATION_BODY);
 			refresh.click();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -128,5 +133,15 @@ public class NotificationModel implements Runnable{
 		loginPage.getWebClient().waitForBackgroundJavaScriptStartingBefore(30000);
 		
 		wpm.setPage(loginPage);
+	}
+	
+	public void getXMLData() throws Exception{
+		dataController = new NotificationDataController().getNotificationData();
+		
+		USERNAME = dataController.getUsername();
+		PASSWORD = dataController.getPassword();
+		NOTIFICATION_BODY = dataController.getNotificationBody();
+		NOTIFICATION_TITLE = dataController.getNotificationTitle();
+		System.out.println(dataController.toString());
 	}
 }
