@@ -35,11 +35,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
 import java.util.Date;
 
-import org.w3c.dom.NodeList;
-
 import Utils.Util;
-import controller.NotificationDataController;
-import model.globals.Paths;
 import model.web.WebPageManipulation;
 
 public class NotificationModel implements Runnable{
@@ -48,7 +44,6 @@ public class NotificationModel implements Runnable{
 	private WebPageManipulation wpm;
 	private HtmlPage page;
 	private Date date = new Date();
-	private XMLFileManipulation dataController;
 
 	private String PostNumber;
 	private static String USERNAME = "Qendra e studimit 'Future'";
