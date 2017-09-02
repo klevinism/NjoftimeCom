@@ -34,8 +34,12 @@ import com.gargoylesoftware.htmlunit.html.HtmlTextArea;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
 import java.util.Date;
+
+import org.w3c.dom.NodeList;
+
 import Utils.Util;
 import controller.NotificationDataController;
+import model.globals.Paths;
 import model.web.WebPageManipulation;
 
 public class NotificationModel implements Runnable{
@@ -44,7 +48,7 @@ public class NotificationModel implements Runnable{
 	private WebPageManipulation wpm;
 	private HtmlPage page;
 	private Date date = new Date();
-	private NotificationDataModel dataController;
+	private XMLFileManipulation dataController;
 
 	private String PostNumber;
 	private static String USERNAME = "Qendra e studimit 'Future'";
@@ -110,7 +114,6 @@ public class NotificationModel implements Runnable{
 			HtmlSubmitInput refresh = (HtmlSubmitInput) wpm.getElementById("vB_Editor_001_save");
 			body.setText(NOTIFICATION_BODY);
 			title.setValueAttribute(NOTIFICATION_TITLE);
-			System.out.println(title.asXml());
 			refresh.click();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,12 +141,14 @@ public class NotificationModel implements Runnable{
 		wpm.setPage(loginPage);
 	}
 	
-	public void getXMLData() throws Exception{
-		dataController = new NotificationDataController().getNotificationData();
+	public void getXMLData() throws Exception{		
+		NotificationDataModel data = new NotificationDataModel();
+		USERNAME = data.getUsername();
+		PASSWORD = data.getPassword();
+		NOTIFICATION_BODY = data.getNotificationBody();
+		data.setRandomness(true);
+		NOTIFICATION_TITLE = data.getNotificationTitle();
 		
-		USERNAME = dataController.getUsername();
-		PASSWORD = dataController.getPassword();
-		NOTIFICATION_BODY = dataController.getNotificationBody();
-		NOTIFICATION_TITLE = dataController.getNotificationTitle();
+		System.out.println(NOTIFICATION_TITLE);
 	}
 }

@@ -4,9 +4,11 @@
 	<General>
 		<AdminUsername>Qendra e studimit 'Future'</AdminUsername>
 		<AdminPassword>Klklkl007</AdminPassword>
-		<NotificationTitle>
-		 <![CDATA[&#9757;]]>TIRANE, OFROJME KURSE IT-PROGRAMIM C/C++, JAVA, JAVASCRIPT, HTML, CSS etj <![CDATA[&#9757;]]>
-		</NotificationTitle>
+		<NotificationTitles>
+			<Title><![CDATA[&#9757;]]>Tirane, OFROJME KURSE WEB PROGRAMMING JAVASCRIPT, HTML, CSS, AJAX, PHP etj...<![CDATA[&#9757;]]></Title>
+			<Title><![CDATA[&#9757;]]>TIRANE, OFROJME KURSE WEB TECHNOLOGY JOOMLA, WORDPRESS,DRUPAL, etj... <![CDATA[&#9757;]]></Title>
+			<Title><![CDATA[&#9757;]]>TIRANE, OFROJME KURSE IT-PROGRAMIM C/C++, C#, Visual Studio, etj...<![CDATA[&#9757;]]></Title>
+		</NotificationTitles>
 		<NotificationBody>[B][SIZE=4][COLOR=#0000CD] 
     OFROJME KURSE PROFESIONALE PROGRAMIMI : 
     [/COLOR][/SIZE][/B]<![CDATA[<br />]]><![CDATA[<br />]]> 

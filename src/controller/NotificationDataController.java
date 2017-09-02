@@ -11,7 +11,7 @@ public class NotificationDataController {
 		xmlParser  = new XMLFileManipulation(Paths.SettingsXmlLocalFile);
 	}
 	
-	public NotificationDataModel getNotificationData() throws Exception {
-		return xmlParser.Read(new NotificationDataModel().getClass());
-	}
+	//public NotificationDataModel getNotificationData() throws Exception {
+		//return xmlParser;//.Read(new NotificationDataModel().getClass());
+	//}
 }
