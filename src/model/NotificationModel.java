@@ -85,8 +85,7 @@ public class NotificationModel implements Runnable{
 		conn.getOptions().setJavaScriptEnabled(false);
 		conn.getOptions().setCssEnabled(false);
 		PostNumber = postNr;
-		
-		this.getXMLData();
+
 	}
 	
 	@Override
@@ -100,7 +99,8 @@ public class NotificationModel implements Runnable{
 			);
 
 			this.login();
-
+			this.getXMLData();
+			System.out.println("---" + NOTIFICATION_TITLE + "*********");
 			page = conn.getPage(url);
 			wpm = new WebPageManipulation(page);
 			
@@ -109,7 +109,9 @@ public class NotificationModel implements Runnable{
 			HtmlSubmitInput refresh = (HtmlSubmitInput) wpm.getElementById("vB_Editor_001_save");
 			body.setText(NOTIFICATION_BODY);
 			title.setValueAttribute(NOTIFICATION_TITLE);
-			refresh.click();
+			title.setText(NOTIFICATION_TITLE);
+			System.out.println(title.asText() + "---" + NOTIFICATION_TITLE);
+			//refresh.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			Util.writeToFile("C:\\Users\\Silver\\Desktop\\indexNjoftime.html",e.getMessage()+" \n\r ",true);
