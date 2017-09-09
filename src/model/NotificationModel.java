@@ -85,11 +85,11 @@ public class NotificationModel implements Runnable{
 		conn.getOptions().setJavaScriptEnabled(false);
 		conn.getOptions().setCssEnabled(false);
 		PostNumber = postNr;
-
 	}
 	
 	@Override
 	public void run() {
+		NotificationDataModel data = new NotificationDataModel();
 		String url =  njoftimeUrl.replaceAll("!", ""+PostNumber);
 		try {
 			Util.writeToFile(
@@ -99,18 +99,17 @@ public class NotificationModel implements Runnable{
 			);
 
 			this.login();
-			this.getXMLData();
-			System.out.println("---" + NOTIFICATION_TITLE + "*********");
 			page = conn.getPage(url);
 			wpm = new WebPageManipulation(page);
 			
 			HtmlTextInput title = (HtmlTextInput) wpm.getElementById("titlefield");
 			HtmlTextArea body = (HtmlTextArea) wpm.getElementById("vB_Editor_001_editor");
 			HtmlSubmitInput refresh = (HtmlSubmitInput) wpm.getElementById("vB_Editor_001_save");
-			body.setText(NOTIFICATION_BODY);
-			title.setValueAttribute(NOTIFICATION_TITLE);
-			title.setText(NOTIFICATION_TITLE);
-			System.out.println(title.asText() + "---" + NOTIFICATION_TITLE);
+
+			body.setText(data.getNotificationBody());
+			title.setAttribute("value", NOTIFICATION_TITLE);
+			data.setRandomness(true);
+			title.setValueAttribute(data.getNotificationTitle());
 			//refresh.click();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,16 +135,5 @@ public class NotificationModel implements Runnable{
 		loginPage.getWebClient().waitForBackgroundJavaScriptStartingBefore(30000);
 		
 		wpm.setPage(loginPage);
-	}
-	
-	public void getXMLData() throws Exception{		
-		NotificationDataModel data = new NotificationDataModel();
-		USERNAME = data.getUsername();
-		PASSWORD = data.getPassword();
-		NOTIFICATION_BODY = data.getNotificationBody();
-		data.setRandomness(true);
-		NOTIFICATION_TITLE = data.getNotificationTitle();
-		
-		System.out.println(NOTIFICATION_TITLE);
 	}
 }
