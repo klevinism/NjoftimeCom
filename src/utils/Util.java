@@ -22,39 +22,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package Utils;
+package utils;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import model.globals.Paths;
 
 public class Util {	
+	public static FileDAO fileDAO = new FileDAO();
 	
 	public static String userPath() {
 		return System.getProperty("user.home");
 	}
 	
-	public static void writeToFile(String path, String context, boolean append){
-		BufferedWriter out = null;
-		try  
-		{
-		    FileWriter fstream = new FileWriter(path, append);
-		    out = new BufferedWriter(fstream);
-		    out.write(context);
-		}
-		catch (IOException e)
-		{
-		    System.err.println("Error: " + e.getMessage());
-		}
-		finally
-		{
-		    if(out != null) {
-		        try {
-					out.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-		    }
-		}
+	public static String[] getFileArgs(){
+		return fileDAO.read(Paths.RootFolder+"/documents/notifications.txt").split(" ");
 	}
+	
+
 }

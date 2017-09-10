@@ -28,16 +28,21 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import model.NotificationModel;
+import utils.Util;
 
 public class NotificationController {
 	private static String[] NOTIFICATION_PAGES;
 	private ExecutorService executor = Executors.newFixedThreadPool(5);
 	
 	public void setArguments(String[] args){
-		NOTIFICATION_PAGES = args;
+		if(args.length != 0 && args != null)
+			NOTIFICATION_PAGES = args;
+		else
+			NOTIFICATION_PAGES = Util.getFileArgs();
 	}
 	
 	public void run() throws Exception{
+		
 		for (int i = 0; i < NOTIFICATION_PAGES.length; i++) {
             Runnable worker = new NotificationModel(NOTIFICATION_PAGES[i]);
             executor.execute(worker);	//calling execute method of NotificationModel  

@@ -27,6 +27,9 @@ package tester;
 import org.junit.Test;
 
 import model.NotificationModel;
+import model.globals.Paths;
+import utils.FileDAO;
+import utils.Util;
 
 public class JUnitXMLTester {
 
@@ -35,13 +38,15 @@ public class JUnitXMLTester {
 	@Test
 	public void test() {
 
-		try {
+		/*try {
 			dataController = new NotificationModel("454545");
 			System.out.println(dataController);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		
+		//Util.fileDAO.read(Paths.SettingsXmlLocalFile);
 		
 	}
 

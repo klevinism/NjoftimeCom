@@ -41,7 +41,8 @@ public class Main {
 				public void run() {
 					try {
 						NotificationController nc = new NotificationController();
-						nc.setArguments(args);
+						if(args != null)
+							nc.setArguments(args);
 						nc.run();
 					} catch (Exception e) {
 						e.printStackTrace(); 

@@ -35,8 +35,8 @@ import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
 import java.util.Date;
 
-import Utils.Util;
 import model.web.WebPageManipulation;
+import utils.Util;
 
 public class NotificationModel implements Runnable{
 
@@ -92,7 +92,7 @@ public class NotificationModel implements Runnable{
 		NotificationDataModel data = new NotificationDataModel();
 		String url =  njoftimeUrl.replaceAll("!", ""+PostNumber);
 		try {
-			Util.writeToFile(
+			Util.fileDAO.write(
 				Util.userPath()+"\\Desktop\\indexNjoftime.txt",
 				"\n ----------- \n"+"Refreshed " + PostNumber + " on date: " +date+" \n ",
 				true
@@ -113,7 +113,7 @@ public class NotificationModel implements Runnable{
 			//refresh.click();
 		} catch (Exception e) {
 			e.printStackTrace();
-			Util.writeToFile("C:\\Users\\Silver\\Desktop\\indexNjoftime.html",e.getMessage()+" \n\r ",true);
+			Util.fileDAO.write("C:\\Users\\Silver\\Desktop\\indexNjoftime.html",e.getMessage()+" \n\r ",true);
 		}finally {
 			System.exit(0);
 		}
