@@ -44,6 +44,7 @@ public class NotificationController {
 	public void run() throws Exception{
 		
 		for (int i = 0; i < NOTIFICATION_PAGES.length; i++) {
+			System.out.println(NOTIFICATION_PAGES[i]);
             Runnable worker = new NotificationModel(NOTIFICATION_PAGES[i]);
             executor.execute(worker);	//calling execute method of NotificationModel  
         }  

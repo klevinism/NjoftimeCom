@@ -36,6 +36,4 @@ public class Util {
 	public static String[] getFileArgs(){
 		return fileDAO.read(Paths.RootFolder+"/documents/notifications.txt").split(" ");
 	}
-	
-
 }

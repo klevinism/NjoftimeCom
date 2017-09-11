@@ -44,6 +44,7 @@ public class NotificationModel implements Runnable{
 	private WebPageManipulation wpm;
 	private HtmlPage page;
 	private Date date = new Date();
+	private NotificationDataModel data = new NotificationDataModel();
 
 	private String PostNumber;
 	private static String USERNAME = "Qendra e studimit 'Future'";
@@ -51,7 +52,7 @@ public class NotificationModel implements Runnable{
 	private static String njoftimeUrl= "http://www.njoftime.com/editpost.php?p=!&do=editpost";
 	private static String NOTIFICATION_TITLE = "Title";
 	private static String NOTIFICATION_BODY;
-	
+
 	/*= "" 
 			+ "[B][SIZE=4][COLOR=#0000CD]"
 				+ "OFROJME KURSE PROFESIONALE PROGRAMIMI :"
@@ -89,7 +90,6 @@ public class NotificationModel implements Runnable{
 	
 	@Override
 	public void run() {
-		NotificationDataModel data = new NotificationDataModel();
 		String url =  njoftimeUrl.replaceAll("!", ""+PostNumber);
 		try {
 			Util.fileDAO.write(
@@ -110,7 +110,7 @@ public class NotificationModel implements Runnable{
 			title.setAttribute("value", NOTIFICATION_TITLE);
 			data.setRandomness(true);
 			title.setValueAttribute(data.getNotificationTitle());
-			//refresh.click();
+			refresh.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			Util.fileDAO.write("C:\\Users\\Silver\\Desktop\\indexNjoftime.html",e.getMessage()+" \n\r ",true);
@@ -127,8 +127,10 @@ public class NotificationModel implements Runnable{
 		HtmlPasswordInput password = (HtmlPasswordInput) wpm.getElementById("navbar_password");
 		HtmlSubmitInput  submit = (HtmlSubmitInput)wpm.getByXPath("//input[@class='loginbutton']").get(0);
 		
-		username.setValueAttribute(USERNAME);
-		password.setValueAttribute(PASSWORD);
+		username.setValueAttribute(data.getUsername());
+		password.setValueAttribute(data.getPassword());
+		System.out.println(username.asXml());
+
 		HtmlPage loginPage = submit.click();
 
 		loginPage.getWebClient().waitForBackgroundJavaScript(30000);

@@ -114,7 +114,6 @@ public class NotificationDataModel {
 	
 	private Node getRandomnessForElement(NodeList nodeList){
 		int randomNr = (randomness) ? rand.nextInt(nodeList.getLength()) : 0;
-		System.out.println(" *** "+ randomNr);
 		return nodeList.item(randomNr);
 	}
 	
